@@ -1,13 +1,19 @@
-# DevBot: Your AI Coding + DevOps Tutor
+# Mentora: Your AI Coding & DevOps Tutor
 
-DevBot is a smart AI chatbot that helps beginners learn how to code and understand key DevOps tools like Git, Docker, and terminal commands.
+Mentora is a full-stack AI mentor that helps developers learn, debug, and deploy code. It simulates a personal tutor, explaining programming concepts and DevOps tools like Python, Git, Docker, and terminal commands through a sleek chat interface.
 
 ## Features
 
-- 💬 Chatbot for Python, JavaScript, and web dev
-- 🐙 Git command assistant
-- 🐳 Dockerfile helper
-- 💻 Terminal command explainer
-- 📚 Future: personalized tutoring + code evaluation
+- 💬 Interactive chatbot for Python, JavaScript, and web development  
+- 🐙 Git command assistant and explainer  
+- 🐳 Dockerfile helper and containerization guidance  
+- 💻 Terminal command explainer  
+- 📚 Planned: personalized tutoring and code evaluation  
 
-Built using GPT-3.5 Turbo and modern web tech.
+## Technology Stack
+
+- **Frontend:** React (Vite), Axios, Tailwind CSS, shadcn/ui, Google Fonts  
+- **Backend:** FastAPI (Python)  
+- **AI:** OpenAI GPT API (currently GPT-5)  
+- **Containerization:** Docker & Docker Compose  
+- **Deployment:** Vercel (frontend), Railway/Render (backend & DB)
