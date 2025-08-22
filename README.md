@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-
 # Mentora: Your AI Coding & DevOps Tutor
 
 Mentora is a full-stack AI mentor that helps developers learn, debug, and deploy code. It simulates a personal tutor, explaining programming concepts and DevOps tools like Python, Git, Docker, and terminal commands through a sleek chat interface.
-======================================================================================================================================================================================================================================================
+
 
 # Mentora: Your AI Coding + DevOps Tutor
 
