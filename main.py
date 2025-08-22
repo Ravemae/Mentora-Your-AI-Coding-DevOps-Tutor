@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from openai import OpenAI
-import os
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+import os
+from openai import OpenAI
 
 load_dotenv()
 
@@ -11,32 +11,41 @@ client = OpenAI(api_key=os.getenv("Secret_key"))
 
 app = FastAPI()
 
-# Enable CORS for frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-class Prompt(BaseModel):
-    user_input: str
-
-# Root endpoint (avoids 404 on `/`)
-@app.get("/")
-async def root():
-    return {"message": "DevBot API is running."}
-
-# Chat endpoint
-@app.post("/chat")
-async def chat(prompt: Prompt):
+class AIRequest(BaseModel):
+    prompt: str
+    
+@app.post("/ask-ai")
+async def ask_ai(request: AIRequest):
+    """
+    Receives a prompt from frontend and sends it to OpenAI's API.
+    Returns AI's response.
+    """
     try:
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[{"role": "user", "content": prompt.user_input}]
+            model="gpt-4o",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are a personal tech tutor skilled in Python, JavaScript, Docker, Git, CLI, Command line prompts and software deployment. Explain clearly and give examples"
+                },
+                {
+                    "role": "user",
+                    "content": request.prompt
+                }
+            ],
+            temperature=0.5
         )
-        response_text = response.choices[0].message.content
-        return {"response": response_text}
+        
+        return {
+            "response": response.choices[0].message.content
+        }
     except Exception as e:
         return {"error": str(e)}
